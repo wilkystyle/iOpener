@@ -37,14 +37,6 @@ def load_settings():
     HISTORY_ENTRIES = settings.get('history_entries')
 
 
-def is_sublime_text_2():
-    return 2000 <= int(sublime.version()) <= 2999
-
-
-def is_sublime_text_3():
-    return 3000 <= int(sublime.version()) <= 3999
-
-
 def get_completion(path):
     """
     Function to find and return longest possile completion for a path p from a
@@ -332,8 +324,8 @@ class iOpenerCommand(sublime_plugin.WindowCommand):
     input_panel  = None
 
     def run(self):
-        if not (is_sublime_text_2() or is_sublime_text_3()):
-            print("iOpener plugin is only for Sublime Text v2 and v3.")
+        if not 2000 <= int(sublime.version()) <= 4999:
+            print("Error: Unknown Sublime Text version")
         else:
             load_settings()
             iOpenerCommand.input_panel = iOpenerPathInput()
