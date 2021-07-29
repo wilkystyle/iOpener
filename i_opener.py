@@ -188,10 +188,7 @@ class iOpenerPathInput():
                     return
 
         if isdir(path):
-            if is_sublime_text_2():
-                # Project folders can not be added using the ST2 API.
-                sublime.status_message("Warning: Opening folders requires ST v3.")
-            elif OPEN_FOLDERS_IN_NEW_WINDOW:
+            if OPEN_FOLDERS_IN_NEW_WINDOW:
                 sublime.run_command("new_window")
                 project_data = dict(folders=[dict(follow_symlinks=True, path=path)])
                 sublime.active_window().set_project_data(project_data)
